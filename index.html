@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <title>Meio Ambiente</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="demo.css" />
+
+    <link rel="stylesheet" href="css/flipTimer.css" />
+
+    <script src="js/jquery.flipTimer.js"></script>
+
+    <script src="js/viacep.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.flipTimer').flipTimer({ direction: 'up' });
+        });
+    </script>
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div>
+                Meio Ambiente
+            </div>
+            <div id="hora">
+                Hora
+            </div>
+        </nav>
+        <div id="mytimer">
+            <div class="flipTimer">
+                <div class="hours"></div>
+                <div class="minutes"></div>
+                <div class="seconds"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="title">
+        <span class="fs-1">
+            Dados Ambietais
+        </span>
+    </div>
+
+    <div class="content">
+        <div class="div-container">
+            <section>
+                <div class="subtitle">Top 10 animais ameaçados de extinção</div>
+                <div class="container">
+                    <div class="row d-flex justify-content-around">
+                        <div class="zoom">
+                            <img src="img/tigres-extintos.jpg" alt="">
+                            <div class="img-label">
+                                1 - TIGRE-DO-SUL-DA-CHINA
+                            </div>
+                        </div>
+                        <div class="zoom">
+                            <img src="img/urso-polar-um-dos-animais-mais-perigosos.jpg" alt="">
+                            <div class="img-label">
+                                2 - URSO POLAR
+                            </div>
+                        </div>
+                        <div class="zoom">
+                            <img src="img/morsa-entre-os-animais-com-risco-de-extincao.jpg" alt="">
+                            <div class="img-label">
+                                3 - MORSA
+                            </div>
+                        </div>
+                        <div class="zoom">
+                            <img src="img/pinguim-de-magalhaes.jpg" alt="">
+                            <div class="img-label">
+                                4 - PINGUIM DE MAGALHÃES
+                            </div>
+                        </div>
+                        <div class="zoom">
+                            <img src="img/tartaruga-gigante-animais-em-extincao.jpg" alt="">
+                            <div class="img-label">
+                                5 - TARTARUGA GIGANTE
+                            </div>
+                        </div>
+                        <div class="zoom">
+                            <img src="img/atum-azul.jpg" alt="">
+                            <div class="img-label">
+                                6 - ATUM AZUL
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="subtitle">Evolução da quantidade de área (hectares) de florestas públicas</div>
+                <div class="legenda" id="legenda1">
+                    <div id="info-chart1">Mais informações</div>
+                    <div id="legenda-chart1">
+                        Desde o início da série histórica até o ano de 2010 ocorreu um grande aumento na quantidade de
+                        Florestas
+                        Públicas, em decorrência da identificação das terras publicas pelo Programa Terra Legal e
+                        efetiva
+                        destinação destas terras. A partir de então não ocorreram aumentos significativos na área total
+                        com
+                        tendência de estabilização, isto se deve ao amadurecimento no processo de identificação das
+                        terras
+                        públicas e posterior destinação.
+                    </div>
+                </div>
+                <canvas id="bar-chart" width="800" height="400"></canvas>
+            </section>
+            <section>
+                <div class="subtitle">Principais parques ambientais do Paraná</div>
+                <div id="mapid" class="map"></div>
+            </section>
+            <section>
+                <div class="subtitle">Fale conosco</div>
+                <div class="form-input">
+                    <label>Cep:
+                        <input name="cep" type="text" id="cep" value="" size="10" maxlength="9" /></label>
+                </div>
+                <div class="form-input"><label>Rua:
+                        <input name="rua" type="text" id="rua" size="40" />
+                    </label>
+                </div>
+                <div class="form-input"><label>Bairro:
+                        <input name="bairro" type="text" id="bairro" />
+                    </label>
+                </div>
+                <div class="form-input"><label>Cidade:
+                        <input name="cidade" type="text" id="cidade" />
+                    </label>
+                </div>
+                <div class="form-input"><label>Estado:
+                        <input name="uf" type="text" id="uf" size="2" />
+                    </label>
+                </div>
+                <div class="form-input"><label>IBGE:
+                        <input name="ibge" type="text" id="ibge" />
+                    </label>
+                </div>
+                <div class="form-input"><label>Mensagem:
+                        <input name="text" type="text" id="text" size="60" />
+                    </label>
+                </div>
+                <button class="btn btn-success ms-2 mt-3" id="send">Enviar</button>
+                <div class="info" >* consumo de API viaCepe com jquery</div>
+            </section>
+            <hr>
+            <div class="myfooter">
+                Daniel Baltazar Schneider
+            </div>
+            <hr>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="js/myscript.js"></script>
+    <script src="js/leaflet.js"></script>
+</body>
+
+</html>
